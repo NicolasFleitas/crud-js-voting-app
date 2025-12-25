@@ -1,0 +1,17 @@
+{
+  "name": "learn-it-love-it",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Nicolás Fleitas",
+  "type": "commonjs",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1"
+  }
+}
