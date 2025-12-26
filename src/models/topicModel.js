@@ -1,19 +1,32 @@
 // Simulación de BD
 let topics = [
     { id: 1, titulo: "¿Node.js es mejor que Python?", votos: 10 },
-    { id: 2, titulo: "Aprender Fetch API", votos: 5 },
-    { id: 3, titulo: "Arquitectura MVC", votos: 2 }
+    { id: 2, titulo: "Recursos para Fetch API", votos: 5 }
 ];
+
+const generateId = () => Date.now();
 
 // Funciones para interactuar con los topics
 const TopicModel = {
-    
+
     getAll: () => {
-        return topics;
+        return topics.sort((a, b) => b.votos - a.votos);
     },
 
-    findById: (id) => {
-        return topics.find(t => t.id == id);
+    create: (titulo) => {
+        const newTopic = {
+            id: generateId(),
+            titulo,
+            votos: 0
+        };
+        topics.push(newTopic);
+        return newTopic;
+    },
+
+    delete: (id) => {
+        const initialLength = topics.length;
+        topics = topics.filter(t => t.id != id);
+        return topics.length < initialLength; // Retorna true si borro algo
     },
 
     upVote: (id) => {

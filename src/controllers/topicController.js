@@ -1,25 +1,47 @@
+const LinkModel = require('../models/linkModel');
 const TopicModel = require('../models/topicModel');
-const topicModel = require('../models/topicModel');
 
 const topicController = {
     getTopics: (req, res) => {
-        const topics = topicModel.getAll();
-        res.json(topics);
+
+        const topics = TopicModel.getAll();
+        // Une topics con sus links correspondientes
+        const topicWithLinks = topics.map(topic => {
+            return {
+                ...topic,
+                links: LinkModel.getByTopicId(topic.id)
+            }
+        });
+
+        res.json(topicWithLinks);
     },
 
-    voteTopic: (req,res) => {
-        const { id } = req.params;
-        const updateTopic = TopicModel.upVote(id);
+    createTopic: (req, res) => {
+        const { titulo } = req.body;
+        if (!titulo) return res.status(400).json({ error: "Titulo requerido" });
 
-        if (updateTopic) {
-            res.json({
-                success: true,
-                nuevos_votos: updateTopic.votos,
-                id: updateTopic.id
-            })
+        const newTopic = TopicModel.create(titulo);
+        // Devolvemos el topic con un array de links vacio por consistencia
+        res.status(201).json({ ...newTopic, links: [] });
+    },
+
+    deleteTopic: (req, res) => {
+        const { id } = req.params;
+        const success = TopicModel.delete(id);
+
+        if (success) {
+            // Aca se podria llamar a LinkModel para borrar links huerfanos
+            res.json({ success: true });
         } else {
-            res.status(404).json({ success: false, message: "Topic no encontrado"});
+            res.status(400).json({ error: "Topic no encontrado" });
         }
+    },
+
+    voteTopic: (req, res) => {
+        const { id } = req.params;
+        const topic = TopicModel.upVote(id);
+        if (topic) res.json(topic);
+        else res.status(404).json({ error: "Topic no encontrado" });
     }
 };
 

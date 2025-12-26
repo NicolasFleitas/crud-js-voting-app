@@ -1,10 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const topicController = require('../controllers/topicController');
+const TopicController = require('../controllers/topicController');
+const LinkController = require('../controllers/linkController');
 
-// Definimos las rutas
 
-router.get('/topics', topicController.getTopics);
-router.patch('/topics/:id/vote', topicController.voteTopic);
+// Rutas de TOPICS
+
+router.get('/topics', TopicController.getTopics);
+router.post('/topics', TopicController.createTopic);
+router.delete('/topics/:id', TopicController.deleteTopic);
+router.patch('/topics/:id/vote', TopicController.voteTopic);
+
+// Rutas de LINKS
+
+router.post('/topics/:id/links', LinkController.addLink);
+router.patch('/topics/:id/links/:linkId/vote', LinkController.voteLink);
+router.delete('/topics/:id/links/:linkId', LinkController.deleteLink);
 
 module.exports = router;
