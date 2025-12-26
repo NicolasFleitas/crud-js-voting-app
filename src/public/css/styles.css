@@ -1,38 +1,142 @@
 body {
-  font-family: sans-serif;
-  background: #f4f4f4;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f2f5;
   padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
+
+/* Formulario Principal */
+.create-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+#form-tema {
+  display: flex;
+  gap: 10px;
+}
+
+#form-tema input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  cursor: pointer;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+button[type="submit"] {
+  background: #1877f2;
+  color: white;
+}
+
+button[type="submit"]:hover {
+  background: #166fe5;
+}
+
+/* Grid de Temas */
 .topics-grid {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
+
+/* Tarjeta de Tema */
 .topic-card {
   background: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #1877f2;
 }
-.actions {
+
+.topic-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 15px;
+  margin-bottom: 15px;
 }
-.btn-votar {
-  background: #007bff;
-  color: white;
-  border: none;
-  padding: 8px 15px;
+
+.topic-title {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.topic-votes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #e7f3ff;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+/* Lista de Enlaces (Links) */
+.links-list {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+  border-top: 1px solid #eee;
+}
+
+.link-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.link-item a {
+  color: #1877f2;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link-item a:hover {
+  text-decoration: underline;
+}
+
+/* Mini formulario para agregar link */
+.add-link-form {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.add-link-form input {
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  cursor: pointer;
+  font-size: 0.9em;
 }
-.btn-votar:hover {
-  background: #0056b3;
+
+.btn-small {
+  padding: 5px 10px;
+  font-size: 0.85em;
 }
-.voto-numero {
-  font-weight: bold;
-  font-size: 1.2em;
-  transition: color 0.3s;
+
+.btn-vote {
+  background: transparent;
+  border: 1px solid #1877f2;
+  color: #1877f2;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.btn-vote:hover {
+  background: #e7f3ff;
 }

@@ -1,7 +1,7 @@
 // Simulación de BD
 let topics = [
-    { id: 1, titulo: "¿Node.js es mejor que Python?", votos: 10 },
-    { id: 2, titulo: "Recursos para Fetch API", votos: 5 }
+    { id: 1, titulo: "Desarrollo Web", votos: 10 },
+    { id: 2, titulo: "Desarrollo de Aplicaciones Móviles", votos: 5 }
 ];
 
 const generateId = () => Date.now();

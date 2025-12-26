@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foro de Learn it</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
     <header>
-        <h1>Discusiones Activas</h1>
+        <h1>Foro de Discusión</h1>
     </header>
 
     <main>
-        <div id="topics-container" class="topics-grid">
-            <p>Cargando temas...</p>
-        </div>
+        <section class="create-section">
+            <h2>Crear Nuevo Tema</h2>
+            <form id="form-tema">
+                <input type="text" id="titulo-input" placeholder="Escribe un título..." required autocomplete="off">
+                <button type="submit">Publicar Tema</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section>
+            <div id="topics-container" class="topics-grid">
+            </div>
+        </section>
     </main>
 
     <script src="js/client.js"></script>
 </body>
+
 </html>
