@@ -2,6 +2,19 @@ const LinkModel = require('../models/linkModel');
 const TopicModel = require('../models/topicModel');
 
 const topicController = {
+
+    // metodo para renderizar la vista
+
+    renderHome: (req, res) => {
+        const topics = TopicModel.getAll();
+        const topicWithLinks = topics.map(topic => ({
+            ...topic,
+            links: LinkModel.getByTopicId(topic.id)
+        }));
+        // Enviamos y injectamos el objeto topics
+        res.render('index', { topics: topicWithLinks });
+    },
+
     getTopics: (req, res) => {
 
         const topics = TopicModel.getAll();

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro de Learn it</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Foro de Discusión</h1>
+    </header>
+
+    <main>
+        <section class="create-section">
+            <h2>Crear Nuevo Tema</h2>
+            <form id="form-tema">
+                <input type="text" id="titulo-input" placeholder="Escribe un título..." required autocomplete="off">
+                <button type="submit">Publicar Tema</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section class="topics-grid">
+            <% if (topics.length===0) { %>
+                <p>No hay temas aún. Sé el primero!</p>
+                <% } %>
+
+                    <% topics.forEach(topic=> { %>
+                        <div class="topic-card">
+                            <div class="topic-header">
+                                <h3 class="topic-title">
+                                    <%= topic.titulo %>
+                                </h3>
+                                <div class="topic-votes">
+                                    <strong>
+                                        <%= topic.votos %>
+                                    </strong>
+                                    <button class="btn-vote" onclick="votarTema('<%= topic.id %>')">👍 Votar
+                                        Tema</button>
+                                    <button class="btn-vote danger" onclick="borrarTema('<%= topic.id %>')">🗑️</button>
+                                </div>
+                            </div>
+
+                            <ul class="links-list">
+                                <% if (topic.links.length> 0) { %>
+                                    <% topic.links.forEach(link=> { %>
+                                        <li class="link-item">
+                                            <a href="<%= link.url %>" target="_blank">
+                                                <%= link.url %>
+                                            </a>
+                                            <div class="topic-votes">
+                                                <span>
+                                                    <%= link.votos %> pts
+                                                </span>
+                                                <button class="btn-vote"
+                                                    onclick="votarLink('<%= topic.id %>','<%= link.id %>')">▲</button>
+                                                <button class="btn-vote danger"
+                                                    onclick="borrarLink('<%= topic.id %>','<%=link.id %>')">🗑️</button>
+                                            </div>
+                                        </li>
+                                        <% }) %>
+                                            <% } else { %>
+                                                <li style="color: #777;">Sin enlaces.</li>
+                                                <% } %>
+                            </ul>
+
+                            <form class="add-link-form"
+                                onsubmit="event.preventDefault(); agregarLink('<%= topic.id %>')">
+                                <input type="text" id="link-input-<%= topic.id %>" placeholder="Agregar URL..." />
+                                <button type="submit" class="btn-small">Añadir Link</button>
+                            </form>
+                        </div>
+                        <% }) %>
+        </section>
+    </main>
+
+    <script src="/js/client.js"></script>
+</body>
+
+</html>
