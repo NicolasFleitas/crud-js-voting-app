@@ -1,34 +1,38 @@
 const LinkModel = require('../models/linkModel');
 const TopicModel = require('../models/topicModel');
 
+// Obtiene topics con sus links
+const getAllTopicsWithLinks = () => {
+    const topics = TopicModel.getAll();
+    return topics.map(topic => ({
+        ...topic,
+        links: LinkModel.getByTopicId(topic.id)
+    }));
+};
+
 const topicController = {
 
-    // metodo para renderizar la vista
-
+    // Llama a TopicModel para renderizar la vista
     renderHome: (req, res) => {
-        const topics = TopicModel.getAll();
-        const topicWithLinks = topics.map(topic => ({
-            ...topic,
-            links: LinkModel.getByTopicId(topic.id)
-        }));
-        // Enviamos y injectamos el objeto topics
-        res.render('index', { topics: topicWithLinks });
+        const topicsWithLinks = getAllTopicsWithLinks();
+        // Renderiza la vista
+        res.render('index', { topics: topicsWithLinks });
     },
 
+    // Llama a TopicModel para devolver solo el HTML de la lista
+    getTopicsHTML: (req, res) => {
+        const topicsWithLinks = getAllTopicsWithLinks();
+        // Renderiza el partial
+        res.render('partials/topic-list', { topics: topicsWithLinks });
+    },
+
+    // Llama a TopicModel para devolver el JSON de la lista
     getTopics: (req, res) => {
-
-        const topics = TopicModel.getAll();
-        // Une topics con sus links correspondientes
-        const topicWithLinks = topics.map(topic => {
-            return {
-                ...topic,
-                links: LinkModel.getByTopicId(topic.id)
-            }
-        });
-
-        res.json(topicWithLinks);
+        const topicsWithLinks = getAllTopicsWithLinks();
+        res.json(topicsWithLinks);
     },
 
+    // Llama a TopicModel para crear un nuevo topic
     createTopic: (req, res) => {
         const { titulo } = req.body;
         if (!titulo) return res.status(400).json({ error: "Titulo requerido" });
@@ -38,18 +42,19 @@ const topicController = {
         res.status(201).json({ ...newTopic, links: [] });
     },
 
+    // Llama a TopicModel para eliminar un topic
     deleteTopic: (req, res) => {
         const { id } = req.params;
         const success = TopicModel.delete(id);
 
         if (success) {
-            // Aca se podria llamar a LinkModel para borrar links huerfanos
             res.json({ success: true });
         } else {
             res.status(400).json({ error: "Topic no encontrado" });
         }
     },
 
+    // Llama a TopicModel para votar por un topic
     voteTopic: (req, res) => {
         const { id } = req.params;
         const topic = TopicModel.upVote(id);

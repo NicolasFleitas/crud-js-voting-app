@@ -11,7 +11,7 @@ app.set('views', path.join(__dirname, 'src/views'));
 // Middlewares
 app.use(express.json());
 
-// Servimos archivos estáticos (CSS y el JS cliente reducido)
+// Servimos archivos estáticos (CSS y el JS cliente)
 app.use(express.static(path.join(__dirname, 'src/public')));
 
 // RUTAS

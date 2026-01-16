@@ -1,0 +1,48 @@
+<% if (topics.length===0) { %>
+    <p>No hay temas aún. ¡Sé el primero!</p>
+    <% } %>
+
+        <% topics.forEach(topic=> { %>
+            <div class="topic-card" style="view-transition-name: topic-<%= topic.id %>">
+                <div class="topic-header">
+                    <h3 class="topic-title">
+                        <%= topic.titulo %>
+                    </h3>
+                    <div class="topic-votes">
+                        <strong>
+                            <%= topic.votos %>
+                        </strong>
+                        <button class="btn-vote" onclick="votarTema('<%= topic.id %>')">👍 Votar Tema</button>
+                        <button class="btn-vote danger" onclick="borrarTema('<%= topic.id %>')">🗑️</button>
+                    </div>
+                </div>
+
+                <ul class="links-list">
+                    <% if (topic.links.length> 0) { %>
+                        <% topic.links.forEach(link=> { %>
+                            <li class="link-item">
+                                <a href="<%= link.url %>" target="_blank">
+                                    <%= link.url %>
+                                </a>
+                                <div class="topic-votes">
+                                    <span>
+                                        <%= link.votos %> pts
+                                    </span>
+                                    <button class="btn-vote"
+                                        onclick="votarLink('<%= topic.id %>','<%= link.id %>')">▲</button>
+                                    <button class="btn-vote danger"
+                                        onclick="borrarLink('<%= topic.id %>','<%= link.id %>')">🗑️</button>
+                                </div>
+                            </li>
+                            <% }) %>
+                                <% } else { %>
+                                    <li style="color: #777;">Sin enlaces.</li>
+                                    <% } %>
+                </ul>
+
+                <form class="add-link-form" onsubmit="event.preventDefault(); agregarLink('<%= topic.id %>')">
+                    <input type="url" id="link-input-<%= topic.id %>" placeholder="Agregar URL..." />
+                    <button type="submit" class="btn-small">Add Link</button>
+                </form>
+            </div>
+            <% }) %>

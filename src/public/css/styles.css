@@ -140,3 +140,22 @@ button[type="submit"]:hover {
 .btn-vote:hover {
   background: #e7f3ff;
 }
+
+::view-transition-group(*) {
+  animation-duration: 0.5s;
+  /* Medio segundo para que se note el movimiento */
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+  /* Efecto "suave" */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

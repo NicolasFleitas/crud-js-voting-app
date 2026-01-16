@@ -3,6 +3,8 @@ const router = express.Router();
 const TopicController = require('../controllers/topicController');
 const LinkController = require('../controllers/linkController');
 
+// Ruta para obtener solo el fragmento HTML actualizado
+router.get('/components/topic-list', TopicController.getTopicsHTML);
 
 // Rutas de TOPICS
 
