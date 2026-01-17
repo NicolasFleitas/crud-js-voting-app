@@ -13,21 +13,21 @@ const getAllTopicsWithLinks = () => {
 const topicController = {
 
     // Llama a TopicModel para renderizar la vista
-    renderHome: (req, res) => {
+    renderHome: (_req, res) => {
         const topicsWithLinks = getAllTopicsWithLinks();
         // Renderiza la vista
         res.render('index', { topics: topicsWithLinks });
     },
 
-    // Llama a TopicModel para devolver solo el HTML de la lista
-    getTopicsHTML: (req, res) => {
+    // Llama a TopicModel para renderizar el partial de topics
+    getTopicsHTML: (_req, res) => {
         const topicsWithLinks = getAllTopicsWithLinks();
         // Renderiza el partial
         res.render('partials/topic-list', { topics: topicsWithLinks });
     },
 
     // Llama a TopicModel para devolver el JSON de la lista
-    getTopics: (req, res) => {
+    getTopics: (_req, res) => {
         const topicsWithLinks = getAllTopicsWithLinks();
         res.json(topicsWithLinks);
     },

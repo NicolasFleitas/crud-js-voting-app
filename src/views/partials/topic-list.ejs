@@ -39,7 +39,7 @@
                                     <li style="color: #777;">Sin enlaces.</li>
                                     <% } %>
                 </ul>
-
+                <!-- FORMULARIO PARA AGREGAR LINK -->
                 <form class="add-link-form" onsubmit="event.preventDefault(); agregarLink('<%= topic.id %>')">
                     <input type="url" id="link-input-<%= topic.id %>" placeholder="Agregar URL..." />
                     <button type="submit" class="btn-small">Add Link</button>
