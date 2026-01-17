@@ -159,3 +159,89 @@ button[type="submit"]:hover {
     transform: translateY(0);
   }
 }
+
+/* Responsive Design */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  .create-section {
+    padding: 15px;
+  }
+
+  .topic-card {
+    padding: 15px;
+  }
+
+  .topic-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .topic-votes {
+    align-self: flex-start;
+  }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .create-section {
+    padding: 12px;
+  }
+
+  .create-section h2 {
+    font-size: 1.1rem;
+  }
+
+  #form-tema {
+    flex-direction: column;
+  }
+
+  #form-tema input {
+    width: 100%;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .topic-card {
+    padding: 12px;
+  }
+
+  .topic-title {
+    font-size: 1.1rem;
+  }
+
+  .link-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .add-link-form {
+    flex-direction: column;
+  }
+
+  .add-link-form input {
+    width: 100%;
+  }
+
+  .btn-small {
+    width: 100%;
+  }
+}
