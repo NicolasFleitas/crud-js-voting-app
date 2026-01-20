@@ -20,7 +20,7 @@
                 <ul class="links-list">
                     <% if (topic.links.length> 0) { %>
                         <% topic.links.forEach(link=> { %>
-                            <li class="link-item">
+                            <li class="link-item" style="view-transition-name: link-<%= link.id %>">
                                 <a href="<%= link.url %>" target="_blank">
                                     <%= link.url %>
                                 </a>
