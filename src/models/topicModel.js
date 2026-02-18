@@ -36,6 +36,15 @@ const TopicModel = {
             return topic;
         }
         return null;
+    },
+
+    update: (id, titulo) => {
+        const topic = topics.find(t => t.id == id);
+        if (topic) {
+            topic.titulo = titulo;
+            return topic;
+        }
+        return null;
     }
 };
 

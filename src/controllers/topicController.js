@@ -60,6 +60,16 @@ const topicController = {
         const topic = TopicModel.upVote(id);
         if (topic) res.json(topic);
         else res.status(404).json({ error: "Topic no encontrado" });
+    },
+
+    updateTopic: (req, res) => {
+        const { id } = req.params;
+        const { titulo } = req.body;
+        if (!titulo) return res.status(400).json({ error: "Titulo requerido" });
+
+        const updatedTopic = TopicModel.update(id, titulo);
+        if (updatedTopic) res.json(updatedTopic);
+        else res.status(404).json({ error: "Topic no encontrado" });
     }
 };
 

@@ -44,6 +44,15 @@ const LinkModel = {
         const initialLength = links.length;
         links = links.filter(l => l.id != id);
         return links.length < initialLength;
+    },
+
+    update: (id, url) => {
+        const link = links.find(l => l.id == id);
+        if (link) {
+            link.url = url;
+            return link;
+        }
+        return null;
     }
 
 };

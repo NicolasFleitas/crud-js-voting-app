@@ -83,3 +83,27 @@ async function borrarLink(topicId, linkId) {
     await fetch(`${API_URL}/${topicId}/links/${linkId}`, { method: 'DELETE' });
     actualizarVista();
 }
+
+async function editarTema(id, tituloActual) {
+    const nuevoTitulo = prompt("Nuevo título para el tema:", tituloActual);
+    if (!nuevoTitulo || nuevoTitulo === tituloActual) return;
+
+    await fetch(`${API_URL}/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ titulo: nuevoTitulo })
+    });
+    actualizarVista();
+}
+
+async function editarLink(topicId, linkId, urlActual) {
+    const nuevaUrl = prompt("Nueva URL para el enlace:", urlActual);
+    if (!nuevaUrl || nuevaUrl === urlActual) return;
+
+    await fetch(`${API_URL}/${topicId}/links/${linkId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: nuevaUrl })
+    });
+    actualizarVista();
+}

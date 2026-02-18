@@ -39,6 +39,16 @@ const LinkController = {
         } else {
             res.status(404).json({ error: "No se pudo eliminar el link" });
         }
+    },
+
+    updateLink: (req, res) => {
+        const { linkId } = req.params;
+        const { url } = req.body;
+        if (!url) return res.status(400).json({ error: "URL requerida" });
+
+        const updatedLink = LinkModel.update(linkId, url);
+        if (updatedLink) res.json(updatedLink);
+        else res.status(404).json({ error: "Link no encontrado" });
     }
 };
 
