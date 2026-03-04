@@ -8,7 +8,6 @@ router.get('/components/topic-list', TopicController.getTopicsHTML);
 
 // Rutas de TOPICS
 
-router.get('/topics', TopicController.getTopics);
 router.post('/topics', TopicController.createTopic);
 router.patch('/topics/:id', TopicController.updateTopic);
 router.delete('/topics/:id', TopicController.deleteTopic);

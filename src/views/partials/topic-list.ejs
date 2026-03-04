@@ -14,7 +14,7 @@
                         </strong>
                         <button class="btn-vote" onclick="votarTema('<%= topic.id %>')">👍 Votar Tema</button>
                         <button class="btn-vote" onclick="editarTema('<%= topic.id %>', '<%= topic.titulo %>')">✏️</button>
-                        <button class="btn-vote danger" onclick="borrarTema('<%= topic.id %>')">🗑️</button>
+                        <button class="btn-vote" onclick="borrarTema('<%= topic.id %>')">🗑️</button>
                     </div>
                 </div>
 
@@ -33,7 +33,7 @@
                                         onclick="votarLink('<%= topic.id %>','<%= link.id %>')">▲</button>
                                     <button class="btn-vote"
                                         onclick="editarLink('<%= topic.id %>','<%= link.id %>', '<%= link.url %>')">✏️</button>
-                                    <button class="btn-vote danger"
+                                    <button class="btn-vote"
                                         onclick="borrarLink('<%= topic.id %>','<%= link.id %>')">🗑️</button>
                                 </div>
                             </li>

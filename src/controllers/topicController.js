@@ -26,12 +26,6 @@ const topicController = {
         res.render('partials/topic-list', { topics: topicsWithLinks });
     },
 
-    // Llama a TopicModel para devolver el JSON de la lista
-    getTopics: (_req, res) => {
-        const topicsWithLinks = getAllTopicsWithLinks();
-        res.json(topicsWithLinks);
-    },
-
     // Llama a TopicModel para crear un nuevo topic
     createTopic: (req, res) => {
         const { titulo } = req.body;
